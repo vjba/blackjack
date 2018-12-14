@@ -1,46 +1,30 @@
 package app.ui;
 
-import java.util.Optional;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Optional;
 
+import app.Dealer;
 import app.Deck;
 import app.Player;
-import app.Card;
-import app.Dealer;
-
 import javafx.application.Application;
-import javafx.beans.binding.BooleanBinding;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Alert;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import javafx.scene.text.Text;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.layout.Pane;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class Controller extends Application {
 
