@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="480.0" maxWidth="1280.0" minHeight="480.0" minWidth="1280.0" prefHeight="480.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.Controller">
+   <children>
+      <Pane id="gamePane" fx:id="gamePane" maxHeight="480.0" maxWidth="1280.0" minHeight="480.0" minWidth="1280.0" prefHeight="480.0" prefWidth="1280.0" style="-fx-background-color: #303030;">
+         <children>
+            <VBox layoutX="30.0" layoutY="16.0" prefHeight="412.0" prefWidth="520.0" spacing="50.0">
+               <children>
+                  <HBox alignment="CENTER" spacing="50.0" style="-fx-background-color: #424242; -fx-background-radius: 20;">
+                     <children>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Text fill="WHITE" text="Player Name:" />
+                              <Text id="playerName" fx:id="playerName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="playerName" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Chips:" />
+                              <Text id="balance" fx:id="balance" fill="WHITE" text="balance" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Pot:" />
+                              <Text id="pot" fx:id="pot" fill="WHITE" text="pot" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="190.0" maxWidth="530.0" minHeight="190.0" minWidth="530.0" prefHeight="131.0" prefWidth="491.0" spacing="10.0" style="-fx-border-color: #03dac6; -fx-border-radius: 20; -fx-border-width: 3; -fx-background-color: #424242; -fx-background-radius: 20;">
+                     <children>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView id="playerImage1" fx:id="playerImage1" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/SA.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </ImageView>
+                              <Label id="playerCard1Label" text="Card 1" textFill="WHITE" />
+                              <Text id="playerCard1Value" fx:id="playerCard1Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text to change" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView id="playerImage2" fx:id="playerImage2" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/SA.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </ImageView>
+                              <Label text="Card 2" textFill="WHITE" />
+                              <Text id="playerCard2Value" fx:id="playerCard2Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text to change" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView id="playerImage3" fx:id="playerImage3" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../img/SA.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </ImageView>
+                              <Label text="Card 3" textFill="WHITE" />
+                              <Text id="playerCard3Value" fx:id="playerCard3Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text to change" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView id="playerImage4" fx:id="playerImage4" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../img/SA.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </ImageView>
+                              <Label text="Card 4" textFill="WHITE" />
+                              <Text id="playerCard4Value" fx:id="playerCard4Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text to change" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <ImageView id="PlayerImage5" fx:id="playerImage5" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../img/SA.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </ImageView>
+                              <Label text="Card 5" textFill="WHITE" />
+                              <Text id="playerCard5Value" fx:id="playerCard5Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text to change" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="100.0" style="-fx-background-color: #424242; -fx-background-radius: 20;">
+                     <children>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button id="hitButton" fx:id="hitButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#hit" style="-fx-background-color: #03dac6;" text="Hit">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                              <Button id="standButton" fx:id="standButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#stand" style="-fx-background-color: #03dac6;" text="Stand">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button id="placeBetButton" fx:id="placeBetButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#placeBet" style="-fx-background-color: #03dac6;" text="Place Bet">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Button>
+                              <TextField id="placeBetValue" fx:id="placeBetValue" minHeight="40.0" minWidth="50.0">
+                                 <font>
+                                    <Font name="Courier New" size="12.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER" layoutX="705.0" layoutY="133.0" maxHeight="190.0" maxWidth="530.0" minHeight="190.0" minWidth="530.0" prefHeight="193.0" prefWidth="530.0" spacing="10.0" style="-fx-border-color: #6200ee; -fx-border-width: 5; -fx-border-radius: 20; -fx-background-color: #424242; -fx-background-radius: 30;">
+               <children>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <ImageView id="dealerImage1" fx:id="dealerImage1" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/DA.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Label text="Card 1" textFill="WHITE" />
+                        <Text id="dealerCard1Value" fx:id="dealerCard1Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Value" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <ImageView id="dealerImage2" fx:id="dealerImage2" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/DA.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Label text="Card 2" textFill="WHITE" />
+                        <Text id="dealerCard2Value" fx:id="dealerCard2Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Value" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <ImageView id="dealerImage3" fx:id="dealerImage3" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../img/DA.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Label text="Card 3" textFill="WHITE" />
+                        <Text id="dealerCard3Value" fx:id="dealerCard3Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Value" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <ImageView id="dealerImage4" fx:id="dealerImage4" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../img/DA.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Label text="Card 4" textFill="WHITE" />
+                        <Text id="dealerCard4Value" fx:id="dealerCard4Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Value" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <ImageView id="dealerImage5" fx:id="dealerImage5" fitHeight="150.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../img/DA.png" />
+                           </image>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </ImageView>
+                        <Label text="Card 5" textFill="WHITE" />
+                        <Text id="dealerCard5Value" fx:id="dealerCard5Value" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Value" />
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </HBox>
+            <HBox layoutX="926.0" layoutY="16.0" spacing="10.0">
+               <children>
+                  <Button id="gamePaneViewRulesButton" fx:id="gamePaneViewRulesButton" alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#gamePaneViewRules" style="-fx-background-color: #6200ee;" text="Rules" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <Button id="resetGameButton" fx:id="resetGameButton" alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetGame" style="-fx-background-color: #03dac6;" text="Reset" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <Button id="gamePaneExitButton" fx:id="gamePaneExitButton" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#gamePaneExit" style="-fx-background-color: #b00020;" text="Exit" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <VBox alignment="CENTER" layoutX="601.0" layoutY="134.0" spacing="10.0" style="-fx-background-color: #424242; -fx-background-radius: 32; -fx-border-width: 5; -fx-border-color: white; -fx-border-radius: 30;">
+               <children>
+                  <Text id="playerHandScore" fx:id="playerHandScore" fill="#03dac6" strokeType="OUTSIDE" strokeWidth="0.0" text="P1">
+                     <font>
+                        <Font name="Courier New Bold" size="40.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="vs">
+                     <font>
+                        <Font name="Courier New Bold" size="40.0" />
+                     </font>
+                  </Text>
+                  <Text id="dealerHandScore" fx:id="dealerHandScore" fill="#6200ee" strokeType="OUTSIDE" strokeWidth="0.0" text="D1">
+                     <font>
+                        <Font name="Courier New Bold" size="40.0" />
+                     </font>
+                     <effect>
+                        <DropShadow color="#8c8c8c" />
+                     </effect>
+                  </Text>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <effect>
+            <GaussianBlur radius="20.0" />
+         </effect>
+      </Pane>
+      <Pane id="welcomePane" fx:id="welcomePane" layoutX="375.0" layoutY="70.0" prefHeight="341.0" prefWidth="550.0" style="-fx-background-color: #303030; -fx-background-radius: 30;">
+         <children>
+            <VBox alignment="CENTER" layoutX="65.0" layoutY="14.0" spacing="30.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Blackjack" textAlignment="CENTER" wrappingWidth="400.0">
+                     <font>
+                        <Font size="41.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter your name below to begin" />
+                  <TextField id="playerNameInput" fx:id="playerNameInput" maxHeight="50.0" maxWidth="200.0" minHeight="40.0" minWidth="200.0">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <HBox layoutX="45.0" layoutY="260.0" spacing="40.0">
+               <children>
+                  <Button id="welcomePaneViewRulesButton" fx:id="welcomePaneViewRulesButton" maxHeight="40.0" maxWidth="120.0" minHeight="40.0" minWidth="120.0" mnemonicParsing="false" onAction="#welcomePaneViewRules" style="-fx-background-color: #6200ee;" text="View Rules" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <Button id="startGameButton" fx:id="startGameButton" defaultButton="true" maxHeight="40.0" maxWidth="120.0" minHeight="40.0" minWidth="120.0" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: #03d1c6;" text="Start Game">
+                     <effect>
+                        <DropShadow color="#6cffdf" height="30.0" radius="14.5" width="30.0" />
+                     </effect>
+                  </Button>
+                  <Button id="welcomePaneExitButton" fx:id="welcomePaneExitButton" maxHeight="40.0" maxWidth="120.0" minHeight="40.0" minWidth="120.0" mnemonicParsing="false" onAction="#welcomePaneExit" style="-fx-background-color: #b00020;" text="Exit" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <effect>
+            <DropShadow color="WHITE" height="100.0" radius="49.5" width="100.0" />
+         </effect>
+      </Pane>
+      <Pane id="rulesPane" fx:id="rulesPane" layoutX="375.0" layoutY="70.0" prefHeight="341.0" prefWidth="550.0" style="-fx-background-color: #303030; -fx-background-radius: 30;" visible="false">
+         <children>
+            <VBox layoutX="114.0" layoutY="65.05078125" spacing="1.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Blackjack is played with one deck of 52 cards." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="2. The aim of the game is to get to 21 or as close as possible." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Each player goes bust if they have a score of over 21" />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="4. Players are dealt 2 cards and can choose to hit or stand." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="5. Players can bet on each hand." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="6. If the player has a winning hand, their bet will be doubled." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="7. If the player has a losing hand, they lose their bet." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="8. If the result of the hand is a draw, all bets are returned." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="9. The dealer has to stand on 17 or above." />
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="10. The dealer has to hit on 16 or less." />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+            <Text fill="WHITE" layoutX="124.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Rules">
+               <font>
+                  <Font size="49.0" />
+               </font>
+            </Text>
+            <Button id="rulesPaneBackButton" fx:id="rulesPaneBackButton" layoutX="190.0" layoutY="277.0" mnemonicParsing="false" onAction="#rulesPaneBack" prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: #6200ee;" text="Back to game" textFill="WHITE">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow color="WHITE" height="100.0" radius="49.5" width="100.0" />
+         </effect>
+      </Pane>
+   </children>
+</Pane>
