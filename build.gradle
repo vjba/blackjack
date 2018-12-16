@@ -5,10 +5,18 @@ apply plugin: 'jacoco'
 sourceSets {
   main {
     resources {
-        srcDirs = ["src/main/java"]
+        srcDirs = ["src/main/java", "src/main/java/app/img", "src/main/java/app/ui"]
         includes = ["**/*.fxml", "**/*.png"]
     }
   }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'app.ui.Controller'
+        )
+    }
 }
 
 mainClassName = 'app.ui.Controller'
