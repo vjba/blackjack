@@ -292,7 +292,7 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button id="resetGameButton" fx:id="resetGameButton" alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetGame" style="-fx-background-color: #03dac6;" text="Reset" textFill="WHITE">
+                  <Button id="resetGameButton" fx:id="resetGameButton" alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetGame" style="-fx-background-color: #03dac6;" text="Reset" textFill="BLACK">
                      <effect>
                         <DropShadow />
                      </effect>
