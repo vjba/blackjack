@@ -99,6 +99,7 @@ public class Controller extends Application {
 			balance.setText(Integer.toString(player.getBalance()));
 			pot.setText(Integer.toString(player.getBet()));
 			setImageViews();
+			setCardValues();
 		}
 	}
 
@@ -121,9 +122,9 @@ public class Controller extends Application {
 	@FXML
 	void hit(ActionEvent event) {
 		player.getCardFrom(deck);
-		dealer.getCardFrom(deck);
+		dealer.getCardFrom(deck); // TODO Enable dealer makiedecision
 		setImageViews();
-		setImageViewVisibility();
+		setCardValues();
 	}
 
 	@FXML
@@ -268,6 +269,8 @@ public class Controller extends Application {
 		dealerImage3.setImage(dealer.getImageList().get(2));
 		dealerImage4.setImage(dealer.getImageList().get(3));
 		dealerImage5.setImage(dealer.getImageList().get(4));
+
+		setImageViewVisibility();
 	}
 
 	private void setImageViewVisibility() {
@@ -314,5 +317,72 @@ public class Controller extends Application {
 			dealerImage5.setVisible(true);
 		}
 
+	}
+
+	private void setCardValues() {
+		if (player.getHand().size() == 2) {
+			playerCard1Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(0))));
+			playerCard2Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(1))));
+		} else if (player.getHand().size() == 3) {
+			playerCard3Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(2))));
+		} else if (player.getHand().size() == 4) {
+			playerCard4Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(3))));
+		} else if (player.getHand().size() == 5) {
+			playerCard5Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(4))));
+		}
+
+		if (dealer.getHand().size() == 2) {
+			dealerCard1Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(0))));
+			dealerCard2Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(1))));
+		} else if (dealer.getHand().size() == 3) {
+			dealerCard3Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(2))));
+		} else if (dealer.getHand().size() == 4) {
+			dealerCard4Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(3))));
+		} else if (dealer.getHand().size() == 5) {
+			dealerCard5Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(4))));
+		}
+		setCardValueVisibility();
+	}
+
+	private void setCardValueVisibility() {
+		if (player.getHand().size() == 2) {
+			playerCard1Value.setVisible(true);
+			playerCard2Value.setVisible(true);
+
+			playerCard3Value.setVisible(false);
+			playerCard4Value.setVisible(false);
+			playerCard5Value.setVisible(false);
+		} else if (player.getHand().size() == 3) {
+			playerCard3Value.setVisible(true);
+
+			playerCard4Value.setVisible(false);
+			playerCard5Value.setVisible(false);
+		} else if (player.getHand().size() == 4) {
+			playerCard4Value.setVisible(true);
+
+			playerCard5Value.setVisible(false);
+		} else if (player.getHand().size() == 5) {
+			playerCard5Value.setVisible(true);
+		}
+
+		if (dealer.getHand().size() == 2) {
+			dealerCard1Value.setVisible(true);
+			dealerCard2Value.setVisible(true);
+
+			dealerCard3Value.setVisible(false);
+			dealerCard4Value.setVisible(false);
+			dealerCard5Value.setVisible(false);
+		} else if (dealer.getHand().size() == 3) {
+			dealerCard3Value.setVisible(true);
+
+			dealerCard4Value.setVisible(false);
+			dealerCard5Value.setVisible(false);
+		} else if (dealer.getHand().size() == 4) {
+			dealerCard4Value.setVisible(true);
+
+			dealerCard5Value.setVisible(false);
+		} else if (dealer.getHand().size() == 5) {
+			dealerCard5Value.setVisible(true);
+		}
 	}
 }
