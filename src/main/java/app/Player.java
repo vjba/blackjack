@@ -1,15 +1,42 @@
 package app;
 
 import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 public class Player {
 
 	public int points;
-	public ArrayList<Card> hand = new ArrayList<>();
-	public int bet;
-	public int balance;
-	public int latestCardValue;
-	public String playerName;
+	private ArrayList<Card> hand = new ArrayList<>();
+	private int bet;
+	private int balance;
+	private int latestCardValue;
+	private String playerName;
+	private boolean turn = true;
+	private ArrayList<Image> imageList;
+
+	public Player() {
+		newGame();
+	}
+
+	public ArrayList<Image> getImageList() {
+		return imageList;
+	}
+
+	public void setImageViewList(ArrayList<Image> imageList) {
+		this.imageList = imageList;
+	}
+
+	public void setTurn(boolean value) {
+		this.turn = value;
+	}
+
+	public boolean getTurn() {
+		return this.turn;
+	}
 
 	public String getPlayerName() {
 		return this.playerName;
@@ -19,15 +46,27 @@ public class Player {
 		this.playerName = playerName;
 	}
 
-	public Player() {
-		this.balance = 100;
-		newGame();
-	}
-
 	public void newGame() {
+		this.balance = 100;
 		this.points = 0;
 		this.bet = 0;
-		this.emptyHand();
+		emptyHand();
+		this.imageList = new ArrayList<>();
+	}
+
+	public void loadImages() {
+		this.imageList.clear();
+		try {
+			for (int i = 0; i < 5; i++) {
+				if (i >= hand.size()) {
+					this.imageList.add(new Image(new FileInputStream("src/main/java/app/img/red_joker.png")));
+				} else {
+					this.imageList.add(new Image(new FileInputStream(hand.get(i).getImagePath())));
+				}
+			}
+		} catch (FileNotFoundException noFile) {
+			noFile.printStackTrace();
+		}
 	}
 
 	public void getCardFrom(Deck deck) {
@@ -46,7 +85,7 @@ public class Player {
 			} else if (cardValue.equals("A")) {
 				// TODO Need to call and retrieve decision value from interface and pass it to
 				// below. Cannot get 100% code coverage until implemented
-				result = aceDecision(1); // TODO Placeholder parameter
+				result = aceDecision(11);
 			} else {
 				int toInt = Integer.parseInt(cardValue);
 				assert toInt > 1 && toInt < 11 : "Card not recognised";
@@ -91,6 +130,14 @@ public class Player {
 		return false;
 	}
 
+	public boolean isWinner() {
+		if (points == 21) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public void handleBet() {
 		if (isBust()) {
 			balance -= bet;
@@ -108,7 +155,7 @@ public class Player {
 	}
 
 	public void emptyHand() {
-		this.hand = new ArrayList<>();
+		this.hand.clear();
 	}
 
 	public int getBet() {
@@ -127,18 +174,15 @@ public class Player {
 		this.balance = balance;
 	}
 
-	// Test purposes only
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
 
-	// Testing purposes only
 	public String toString() {
 		return "\nPlayer details:" + "\nBalance:\t" + balance + "\nPoints:\t\t" + points + "\nHand:\t\t"
 				+ handToString() + "\nBet:\t\t" + bet + "\nLast card:\t" + latestCardValue;
 	}
 
-	// Testing purposes only
 	public String handToString() {
 		String result = "";
 		for (Card card : hand) {
