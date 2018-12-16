@@ -75,104 +75,30 @@ public class Controller extends Application {
 
 	@FXML
 	void startGame(ActionEvent event) {
-		try {
-			if (playerNameInput.getText().isEmpty()) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("ALERT");
-				alert.setHeaderText(null);
-				alert.setContentText("Please enter a name");
-				alert.showAndWait();
-			} else {
-
-				// initiate game
-				// pull 2 cards from deck for each player
-				for (int i = 0; i < 2; i++) {
-					player.getCardFrom(deck);
-					dealer.getCardFrom(deck);
-				}
-
-				startGameButton.setDisable(true);
-				startGameButton.setDefaultButton(false);
-				placeBetButton.setDefaultButton(true);
-				gameStarted = true;
-				welcomePane.setVisible(false);
-				gamePane.setEffect(null);
-
-				// set player attributes
-				player.setPlayerName(playerNameInput.getText());
-				playerName.setText(player.getPlayerName());
-				balance.setText(Integer.toString(player.getBalance()));
-				pot.setText(Integer.toString(player.getBet()));
-
-				playerImage1.setImage(new Image(new FileInputStream(player.getHand().get(0).getImagePath())));
-				playerCard1Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(0))));
-				playerImage2.setImage(new Image(new FileInputStream(player.getHand().get(1).getImagePath())));
-				playerCard2Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(1))));
-
-				dealerImage1.setImage(new Image(new FileInputStream(dealer.getHand().get(0).getImagePath())));
-				dealerCard1Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(0))));
-				dealerImage2.setImage(new Image(new FileInputStream(dealer.getHand().get(1).getImagePath())));
-				dealerCard2Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(1))));
-				playerHandScore.setText(Integer.toString(player.getPoints()));
-				dealerHandScore.setText(Integer.toString(dealer.getPoints()));
-
-				gameConditionalCheck();
+		if (playerNameInput.getText().isEmpty()) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("ALERT");
+			alert.setHeaderText(null);
+			alert.setContentText("Please enter a name");
+			alert.showAndWait();
+		} else {
+			for (int i = 0; i < 2; i++) {
+				player.getCardFrom(deck);
+				dealer.getCardFrom(deck);
 			}
-		} catch (FileNotFoundException noFile) {
-			noFile.printStackTrace();
 
-			// set gui
+			startGameButton.setDisable(true);
+			startGameButton.setDefaultButton(false);
+			placeBetButton.setDefaultButton(true);
+			gameStarted = true;
+			welcomePane.setVisible(false);
+			gamePane.setEffect(null);
 
-			if (playerNameInput.getText().isEmpty()) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("ALERT");
-				alert.setHeaderText(null);
-				alert.setContentText("Please enter a name");
-				alert.showAndWait();
-			} else {
-
-				startGameButton.setDisable(true);
-				startGameButton.setDefaultButton(false);
-				placeBetButton.setDefaultButton(true);
-				gameStarted = true;
-				welcomePane.setVisible(false);
-				gamePane.setEffect(null);
-
-				// set player attributes
-				player.setPlayerName(playerNameInput.getText());
-				playerName.setText(player.getPlayerName());
-				balance.setText(Integer.toString(player.getBalance()));
-				pot.setText(Integer.toString(player.getBet()));
-
-				// initiate game
-				// pull 2 cards from deck for each player
-				for (int i = 0; i < 2; i++) {
-					player.getCardFrom(deck);
-					dealer.getCardFrom(deck);
-
-					if (playerNameInput.getText().isEmpty()) {
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("ALERT");
-						alert.setHeaderText(null);
-						alert.setContentText("Please enter a name");
-						alert.showAndWait();
-					} else {
-						startGameButton.setDisable(true);
-						startGameButton.setDefaultButton(false);
-						placeBetButton.setDefaultButton(true);
-						gameStarted = true;
-						welcomePane.setVisible(false);
-						gamePane.setEffect(null);
-
-						// set player attributes
-						player.setPlayerName(playerNameInput.getText());
-						playerName.setText(player.getPlayerName());
-						balance.setText(Integer.toString(player.getBalance()));
-						pot.setText(Integer.toString(player.getBet()));
-
-					}
-				}
-			}
+			player.setPlayerName(playerNameInput.getText());
+			playerName.setText(player.getPlayerName());
+			balance.setText(Integer.toString(player.getBalance()));
+			pot.setText(Integer.toString(player.getBet()));
+			setImageViews();
 		}
 	}
 
@@ -192,63 +118,18 @@ public class Controller extends Application {
 		rulesPane.setVisible(false);
 	}
 
-	// TODO Consider building lists and iterating over to set images
 	@FXML
 	void hit(ActionEvent event) {
-
 		player.getCardFrom(deck);
 		dealer.getCardFrom(deck);
-		playerHandScore.setText(Integer.toString(player.getPoints()));
-		dealerHandScore.setText(Integer.toString(dealer.getPoints()));
-
-		try {
-			dealer.getCardFrom(deck);
-			if (player.getHand().size() == 3) {
-				// Player
-				playerImage3.setVisible(true);
-				playerImage3.setImage(new Image(new FileInputStream(player.getHand().get(2).getImagePath())));
-				playerCard3Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(2))));
-
-				// Dealer
-				dealerImage3.setVisible(true);
-				dealerImage3.setImage(new Image(new FileInputStream(dealer.getHand().get(2).getImagePath())));
-				dealerCard3Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(2))));
-
-			} else if (player.getHand().size() == 4) {
-				// Player
-				playerImage4.setVisible(true);
-				playerImage4.setImage(new Image(new FileInputStream(player.getHand().get(3).getImagePath())));
-				playerCard4Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(3))));
-
-				// Dealer
-				dealerImage4.setVisible(true);
-				dealerImage4.setImage(new Image(new FileInputStream(dealer.getHand().get(3).getImagePath())));
-				dealerCard4Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(3))));
-
-			} else if (player.getHand().size() == 5) {
-				// Player
-				playerImage5.setVisible(true);
-				playerImage5.setImage(new Image(new FileInputStream(player.getHand().get(4).getImagePath())));
-				playerCard5Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(4))));
-
-				// Dealer
-				dealerImage5.setVisible(true);
-				dealerImage5.setImage(new Image(new FileInputStream(dealer.getHand().get(4).getImagePath())));
-				dealerCard5Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(4))));
-
-				hitButton.setDisable(true);
-			}
-		} catch (FileNotFoundException noFile) {
-			noFile.printStackTrace();
-		}
-		gameConditionalCheck();
+		setImageViews();
+		setImageViewVisibility();
 	}
 
 	@FXML
 	void stand(ActionEvent event) {
 		dealer.getCardFrom(deck);
 
-		gameConditionalCheck();
 	}
 
 	@FXML
@@ -281,7 +162,7 @@ public class Controller extends Application {
 			alert.showAndWait();
 
 		}
-		gameConditionalCheck();
+
 	}
 
 	@FXML
@@ -310,9 +191,9 @@ public class Controller extends Application {
 		Optional<ButtonType> result = alert.showAndWait();
 
 		if (result.get() == reset) {
-			resetGameMethod();
+			newGame();
 		}
-		gameConditionalCheck();
+
 	}
 
 	@Override
@@ -328,167 +209,21 @@ public class Controller extends Application {
 		launch(args);
 	}
 
-	private void gameConditionalCheck() {
-		if ((player.isBust() && !dealer.isBust()) || (dealer.isBust() && !player.isBust())) {
-			if (player.isBust() && !dealer.isBust()) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Player bust");
-				alert.setHeaderText(null);
-				alert.setContentText("Unlucky! You went over 21.\n Would you like to play again?");
-
-				ButtonType reset = new ButtonType("Play Again");
-				ButtonType exit = new ButtonType("Exit");
-
-				alert.getButtonTypes().setAll(reset, exit);
-
-				Optional<ButtonType> result = alert.showAndWait();
-
-				if (result.get() == reset) {
-					resetGameMethod();
-				} else if (result.get() == exit) {
-					exitGame();
-				}
-			} else if (dealer.isBust() && !player.isBust()) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Dealer bust");
-				alert.setHeaderText(null);
-				alert.setContentText(
-						"Congratulations! The dealer went over 21 and you win!\n Would you like to play again?");
-
-				ButtonType reset = new ButtonType("Play Again");
-				ButtonType exit = new ButtonType("Exit");
-
-				alert.getButtonTypes().setAll(reset, exit);
-
-				Optional<ButtonType> result = alert.showAndWait();
-
-				if (result.get() == reset) {
-					resetGameMethod();
-				} else if (result.get() == exit) {
-					exitGame();
-				}
-			}
-		} else if (player.isBust() && dealer.isBust()) {
-			if (player.getPoints() < dealer.getPoints()) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("You win");
-				alert.setHeaderText(null);
-				alert.setContentText(
-						"Congratulations! You won because you both bust, but you were nearest to 21.\n Would you like to play again?");
-
-				ButtonType reset = new ButtonType("Play Again");
-				ButtonType exit = new ButtonType("Exit");
-
-				alert.getButtonTypes().setAll(reset, exit);
-
-				Optional<ButtonType> result = alert.showAndWait();
-
-				if (result.get() == reset) {
-					resetGameMethod();
-				} else if (result.get() == exit) {
-					exitGame();
-				}
-			} else if (dealer.getPoints() < player.getPoints()) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("You lose");
-				alert.setHeaderText(null);
-				alert.setContentText(
-						"Unlucky! Dealer won because you both bust, but the dealer was nearest to 21.\n Would you like to play again?");
-
-				ButtonType reset = new ButtonType("Play Again");
-				ButtonType exit = new ButtonType("Exit");
-
-				alert.getButtonTypes().setAll(reset, exit);
-
-				Optional<ButtonType> result = alert.showAndWait();
-
-				if (result.get() == reset) {
-					resetGameMethod();
-				} else if (result.get() == exit) {
-					exitGame();
-				}
-			}
-		} else if (player.getHand().size() == 5) {
-			if (player.getPoints() > dealer.getPoints()) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("You win");
-				alert.setHeaderText(null);
-				alert.setContentText(
-						"Congratulations! You won this hand by points because card limit was met.\n Would you like to play again?");
-
-				ButtonType reset = new ButtonType("Play Again");
-				ButtonType exit = new ButtonType("Exit");
-
-				alert.getButtonTypes().setAll(reset, exit);
-
-				Optional<ButtonType> result = alert.showAndWait();
-
-				if (result.get() == reset) {
-					resetGameMethod();
-				} else if (result.get() == exit) {
-					exitGame();
-				}
-			} else if (dealer.getPoints() > player.getPoints()) {
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("You lose");
-				alert.setHeaderText(null);
-				alert.setContentText(
-						"Unlucky! You lost this hand by points because card limit was met.\n Would you like to play again?");
-
-				ButtonType reset = new ButtonType("Play Again");
-				ButtonType exit = new ButtonType("Exit");
-
-				alert.getButtonTypes().setAll(reset, exit);
-
-				Optional<ButtonType> result = alert.showAndWait();
-
-				if (result.get() == reset) {
-					resetGameMethod();
-				} else if (result.get() == exit) {
-					exitGame();
-				}
-			}
-		} else if (player.getBalance() <= 0) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("You lose");
-			alert.setHeaderText(null);
-			alert.setContentText("Unlucky! You ran out of chips!\n Would you like to play again?");
-
-			ButtonType reset = new ButtonType("Play Again");
-			ButtonType exit = new ButtonType("Exit");
-
-			alert.getButtonTypes().setAll(reset, exit);
-
-			Optional<ButtonType> result = alert.showAndWait();
-
-			if (result.get() == reset) {
-				resetGameMethod();
-			} else if (result.get() == exit) {
-				exitGame();
-			}
-		} else if (player.getPoints() == 21 || dealer.getPoints() == 21) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("Blackjack!");
-			alert.setHeaderText(null);
-			alert.setContentText("That's Blackjack!");
-		}
-	}
-
 	private void exitGame() {
 
-		if (player.getBalance() >= 100) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Won");
-			alert.setHeaderText(null);
-			alert.setContentText("You have won!");
-			alert.showAndWait();
-		} else {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Lost");
-			alert.setHeaderText(null);
-			alert.setContentText("You have lost!");
-			alert.showAndWait();
-		}
+		// if (player.getBalance() >= 100) {
+		// Alert alert = new Alert(AlertType.INFORMATION);
+		// alert.setTitle("Won");
+		// alert.setHeaderText(null);
+		// alert.setContentText("You have won!");
+		// alert.showAndWait();
+		// } else {
+		// Alert alert = new Alert(AlertType.INFORMATION);
+		// alert.setTitle("Lost");
+		// alert.setHeaderText(null);
+		// alert.setContentText("You have lost!");
+		// alert.showAndWait();
+		// }
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirm Exit");
 		alert.setHeaderText(null);
@@ -505,51 +240,79 @@ public class Controller extends Application {
 		}
 	}
 
-	private void resetGameMethod() {
-
-		player.setPoints(0);
-		dealer.setPoints(0);
-
-		player.emptyHand();
-		dealer.emptyHand();
-
-		player.setBalance(100);
-		player.setBet(0);
-		this.deck = new Deck();
+	private void newGame() {
+		player.newGame();
+		dealer.newGame();
+		deck = new Deck();
 
 		for (int i = 0; i < 2; i++) {
 			player.getCardFrom(deck);
 			dealer.getCardFrom(deck);
 		}
 
-		playerImage3.setVisible(false);
-		playerImage4.setVisible(false);
-		playerImage5.setVisible(false);
-		dealerImage3.setVisible(false);
-		dealerImage4.setVisible(false);
-		dealerImage5.setVisible(false);
+		setImageViews();
+		setImageViewVisibility();
+	}
 
-		player.setPlayerName(playerNameInput.getText());
-		playerName.setText(player.getPlayerName());
-		balance.setText(Integer.toString(player.getBalance()));
-		pot.setText(Integer.toString(player.getBet()));
+	private void setImageViews() {
+		player.loadImages();
+		playerImage1.setImage(player.getImageList().get(0));
+		playerImage2.setImage(player.getImageList().get(1));
+		playerImage3.setImage(player.getImageList().get(2));
+		playerImage4.setImage(player.getImageList().get(3));
+		playerImage5.setImage(player.getImageList().get(4));
 
-		try {
-			playerImage1.setImage(new Image(new FileInputStream(player.getHand().get(0).getImagePath())));
-			playerCard1Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(0))));
-			playerImage2.setImage(new Image(new FileInputStream(player.getHand().get(1).getImagePath())));
-			playerCard2Value.setText(Integer.toString(player.cardToPoints(player.getHand().get(1))));
+		dealer.loadImages();
+		dealerImage1.setImage(dealer.getImageList().get(0));
+		dealerImage2.setImage(dealer.getImageList().get(1));
+		dealerImage3.setImage(dealer.getImageList().get(2));
+		dealerImage4.setImage(dealer.getImageList().get(3));
+		dealerImage5.setImage(dealer.getImageList().get(4));
+	}
 
-			dealerImage1.setImage(new Image(new FileInputStream(dealer.getHand().get(0).getImagePath())));
-			dealerCard1Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(0))));
-			dealerImage2.setImage(new Image(new FileInputStream(dealer.getHand().get(1).getImagePath())));
-			dealerCard2Value.setText(Integer.toString(dealer.cardToPoints(dealer.getHand().get(1))));
-			playerHandScore.setText(Integer.toString(player.getPoints()));
-			dealerHandScore.setText(Integer.toString(dealer.getPoints()));
-			hitButton.setDisable(false);
-		} catch (FileNotFoundException noFile) {
-			noFile.printStackTrace();
+	private void setImageViewVisibility() {
+
+		// Player
+		if (player.getHand().size() == 2) {
+			// visible
+			playerImage1.setVisible(true);
+			playerImage2.setVisible(true);
+
+			// invisible
+			playerImage3.setVisible(false);
+			playerImage4.setVisible(false);
+			playerImage5.setVisible(false);
+		} else if (player.getHand().size() == 3) {
+			playerImage3.setVisible(true);
+			playerImage4.setVisible(false);
+			playerImage5.setVisible(false);
+		} else if (player.getHand().size() == 4) {
+			playerImage4.setVisible(true);
+			playerImage5.setVisible(false);
+		} else if (player.getHand().size() == 5) {
+			playerImage5.setVisible(true);
 		}
-		gameConditionalCheck();
+
+		// Dealer
+		if (dealer.getHand().size() == 2) {
+			// visible
+			dealerImage1.setVisible(true);
+			dealerImage2.setVisible(true);
+
+			// invisible
+			dealerImage3.setVisible(false);
+			dealerImage4.setVisible(false);
+			dealerImage5.setVisible(false);
+		} else if (dealer.getHand().size() == 3) {
+			dealerImage3.setVisible(true);
+			dealerImage4.setVisible(false);
+			dealerImage5.setVisible(false);
+		} else if (dealer.getHand().size() == 4) {
+			dealerImage4.setVisible(true);
+			dealerImage5.setVisible(false);
+		} else if (dealer.getHand().size() == 5) {
+			dealerImage5.setVisible(true);
+		}
+
 	}
 }
