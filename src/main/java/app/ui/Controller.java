@@ -252,7 +252,7 @@ public class Controller extends Application {
 		}
 
 		setImageViews();
-		setImageViewVisibility();
+		setCardValues();
 	}
 
 	private void setImageViews() {
