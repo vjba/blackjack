@@ -3,12 +3,15 @@ package app;
 public class Dealer extends Player {
 
     private int lowRisk = 10, mediumRisk = 15, highRisk = 19;
+
     // Difficulty Explanation:
     // Higher is easier. It makes the dealer more stupid / riskier.
     private double difficultyLevel = 19;
 
     public Dealer() {
         super();
+        setTurn(false);
+        newGame();
     }
 
     public void makeDecision(Deck deck) {
