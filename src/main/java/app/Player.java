@@ -1,10 +1,10 @@
 package app;
 
-import java.util.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 
-import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 
 public class Player {
