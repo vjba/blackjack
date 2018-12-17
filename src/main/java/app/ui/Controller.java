@@ -1,7 +1,5 @@
 package app.ui;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Optional;
 
 import app.Dealer;
@@ -20,7 +18,6 @@ import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -33,15 +30,16 @@ public class Controller extends Application {
 	private Deck deck = new Deck();
 	private GaussianBlur blur = new GaussianBlur(20);
 	private boolean gameStarted = false;
+	private int potValue = 0;
 
 	@FXML
-	private Button startGameButton, placeBetButton, hitButton;
+	private Button startGameButton, placeBetButton, hitButton, standButton, resetGameButton;
 
 	@FXML
 	private Pane welcomePane, rulesPane, gamePane;
 
 	@FXML
-	private Text playerName, balance, pot, playerHandScore, dealerHandScore, validationOutputText;
+	private Text playerName, balance, pot, playerHandScore, dealerHandScore, validationOutputText, statusText;
 
 	@FXML
 	private TextField playerNameInput, placeBetValue;
@@ -75,6 +73,7 @@ public class Controller extends Application {
 
 	@FXML
 	void startGame(ActionEvent event) {
+		statusText.setText("New hand");
 		if (playerNameInput.getText().isEmpty()) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("ALERT");
@@ -97,9 +96,11 @@ public class Controller extends Application {
 			player.setPlayerName(playerNameInput.getText());
 			playerName.setText(player.getPlayerName());
 			balance.setText(Integer.toString(player.getBalance()));
-			pot.setText(Integer.toString(player.getBet()));
-			setImageViews();
-			setCardValues();
+
+			hitButton.setDisable(true);
+			standButton.setDisable(true);
+			resetGameButton.setDisable(true);
+			updateUI();
 		}
 	}
 
@@ -122,32 +123,38 @@ public class Controller extends Application {
 	@FXML
 	void hit(ActionEvent event) {
 		player.getCardFrom(deck);
-		dealer.getCardFrom(deck); // TODO Enable dealer makiedecision
-		setImageViews();
-		setCardValues();
+		dealer.makeDecision(deck);
+
+		hitButton.setDisable(true);
+		standButton.setDisable(true);
+		placeBetButton.setDisable(false);
+		placeBetValue.setDisable(false);
+		updateUI();
 	}
 
 	@FXML
 	void stand(ActionEvent event) {
-		dealer.getCardFrom(deck);
-
+		dealer.makeDecision(deck);
+		hitButton.setDisable(true);
+		standButton.setDisable(true);
+		placeBetButton.setDisable(false);
+		placeBetValue.setDisable(false);
+		updateUI();
 	}
 
 	@FXML
 	void placeBet(ActionEvent event) {
 		try {
-			int bet = Integer.parseInt(placeBetValue.getText());
-			if (bet > player.getBalance()) {
+			int betPlaced = Integer.parseInt(placeBetValue.getText());
+			if (betPlaced > player.getBalance()) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("ALERT");
 				alert.setHeaderText(null);
-				alert.setContentText("You cannot bet more chips than what is in your pot");
+				alert.setContentText("You cannot bet more chips than your balance");
 				alert.showAndWait();
 			} else {
-				player.setBet(player.getBet() + bet);
-				player.setBalance(player.getBalance() - bet);
-				pot.setText(Integer.toString(player.getBet()));
-				balance.setText(Integer.toString(player.getBalance()));
+				player.setBet(betPlaced);
+				player.setBalance(player.getBalance() - betPlaced);
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Bet Confirmed");
 				alert.setHeaderText(null);
@@ -155,15 +162,22 @@ public class Controller extends Application {
 				alert.showAndWait();
 			}
 
-		} catch (NumberFormatException ex) {
+		} catch (NumberFormatException n) {
+			n.printStackTrace();
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("ALERT");
 			alert.setHeaderText(null);
 			alert.setContentText("Please enter an integer value as your bet");
 			alert.showAndWait();
-
 		}
 
+		placeBetButton.setDisable(true);
+		placeBetValue.setDisable(true);
+		hitButton.setDisable(false);
+		standButton.setDisable(false);
+		player.setBet(0);
+		placeBetValue.setText("0");
+		updateUI();
 	}
 
 	@FXML
@@ -200,7 +214,7 @@ public class Controller extends Application {
 	@Override
 	public void start(Stage primarystage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("Game.fxml"));
-		primarystage.setTitle("CO2012 2018-2019 CW2 Group17: Blackjack Game");
+		primarystage.setTitle("Blackjack");
 		primarystage.setScene(new Scene(root));
 		primarystage.show();
 	}
@@ -251,8 +265,13 @@ public class Controller extends Application {
 			dealer.getCardFrom(deck);
 		}
 
-		setImageViews();
-		setCardValues();
+		statusText.setText("New hand");
+		potValue = 0;
+		updateUI();
+		placeBetButton.setDisable(false);
+		placeBetValue.setDisable(false);
+		resetGameButton.setDisable(true);
+
 	}
 
 	private void setImageViews() {
@@ -384,5 +403,62 @@ public class Controller extends Application {
 		} else if (dealer.getHand().size() == 5) {
 			dealerCard5Value.setVisible(true);
 		}
+	}
+
+	private void setPlayerHandScore() {
+		playerHandScore.setText(Integer.toString(player.getPoints()));
+		dealerHandScore.setText(Integer.toString(dealer.getPoints()));
+	}
+
+	private void updateUI() {
+		setImageViews();
+		setCardValues();
+		setPlayerHandScore();
+		statusCheck();
+		pot.setText(Integer.toString(potValue));
+		balance.setText(Integer.toString(player.getBalance()));
+	}
+
+	private void setDisableButtons(boolean value) {
+		placeBetButton.setDisable(value);
+		hitButton.setDisable(value);
+		standButton.setDisable(value);
+		placeBetValue.setDisable(value);
+	}
+
+	private void statusCheck() {
+		if (player.isBust() || dealer.isBust() || player.isWinner() || dealer.isWinner()) {
+			setDisableButtons(true);
+			resetGameButton.setDisable(false);
+		}
+
+		if (player.isBust()) {
+			statusText.setText("You bust!");
+			setDisableButtons(true);
+
+		}
+
+		if (dealer.isBust()) {
+			statusText.setText("Dealer bust!");
+			setDisableButtons(true);
+
+		}
+
+		if (dealer.isBust() && player.isBust()) {
+			statusText.setText("You both bust!");
+		}
+
+		if (player.isWinner()) {
+			statusText.setText(player.getPlayerName() + " wins!");
+			setDisableButtons(true);
+			player.handleBet();
+
+		}
+
+		if (dealer.isWinner()) {
+			statusText.setText("Dealer wins!");
+			setDisableButtons(true);
+		}
+		player.setBet(0);
 	}
 }
