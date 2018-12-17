@@ -9,14 +9,11 @@ import javafx.scene.image.Image;
 
 public class Player {
 
-	public int points;
 	private ArrayList<Card> hand = new ArrayList<>();
-	private int bet;
-	private int balance;
-	private int latestCardValue;
+	private ArrayList<Image> imageList;
+	private int points, bet, balance, latestCardValue;
 	private String playerName;
 	private boolean turn = true;
-	private ArrayList<Image> imageList;
 
 	public Player() {
 		newGame();
