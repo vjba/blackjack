@@ -38,8 +38,9 @@ public class Deck {
                     break;
                 }
             } catch (IndexOutOfBoundsException i) {
-                System.out.println(i.getMessage());
                 i.printStackTrace();
+            } catch (AssertionError a) {
+                a.printStackTrace();
             }
         }
         return card;
