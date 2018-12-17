@@ -6,7 +6,7 @@ public class Dealer extends Player {
 
     // Difficulty Explanation:
     // Higher is easier. It makes the dealer more stupid / riskier.
-    private double difficultyLevel = 19;
+    private double difficultyLevel = 7;
 
     public Dealer() {
         super();
