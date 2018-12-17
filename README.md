@@ -1,7 +1,4 @@
-| Branch | CI Status |
-|--------|--------|
-|`master`|[![Build Status](https://travis-ci.org/vjba/blackjack.svg?branch=master)](https://travis-ci.org/vjba/blackjack)|
-|`stable`|[![Build Status](https://travis-ci.org/vjba/blackjack.svg?branch=stable)](https://travis-ci.org/vjba/blackjack)|
+[![Build Status](https://travis-ci.org/vjba/blackjack.svg?branch=stable)](https://travis-ci.org/vjba/blackjack)
 
 # Blackjack
 
