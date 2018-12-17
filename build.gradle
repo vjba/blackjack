@@ -5,7 +5,7 @@ apply plugin: 'jacoco'
 sourceSets {
   main {
     resources {
-        srcDirs = ["src/main/java", "src/main/java/app/img", "src/main/java/app/ui"]
+        srcDirs = ["src/main/java"]
         includes = ["**/*.fxml", "**/*.png"]
     }
   }
