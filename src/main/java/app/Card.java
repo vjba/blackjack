@@ -2,9 +2,7 @@ package app;
 
 public class Card {
 
-    private String suit;
-    private String value;
-    private String imagePath;
+    private String suit, value, imagePath;
 
     public Card() {
     }
