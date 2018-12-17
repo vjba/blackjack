@@ -11,9 +11,10 @@ public class Player {
 
 	private ArrayList<Card> hand = new ArrayList<>();
 	private ArrayList<Image> imageList;
-	private int points, bet, balance, latestCardValue;
+	private int bet, balance, latestCardValue;
 	private String playerName;
 	private boolean turn = true;
+	public int points;
 
 	public Player() {
 		newGame();
