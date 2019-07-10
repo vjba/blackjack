@@ -11,6 +11,14 @@ sourceSets {
   }
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'app.ui.Controller'
+        )
+    }
+}
+
 mainClassName = 'app.ui.Controller'
 
 repositories {

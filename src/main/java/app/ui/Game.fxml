@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -21,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="480.0" maxWidth="1280.0" minHeight="480.0" minWidth="1280.0" prefHeight="480.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.Controller">
+<Pane cache="true" maxHeight="480.0" maxWidth="1280.0" minHeight="480.0" minWidth="1280.0" prefHeight="480.0" prefWidth="1280.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.ui.Controller">
    <children>
-      <Pane id="gamePane" fx:id="gamePane" maxHeight="480.0" maxWidth="1280.0" minHeight="480.0" minWidth="1280.0" prefHeight="480.0" prefWidth="1280.0" style="-fx-background-color: #303030;">
+      <Pane id="gamePane" fx:id="gamePane" cache="true" maxHeight="480.0" maxWidth="1280.0" minHeight="480.0" minWidth="1280.0" prefHeight="480.0" prefWidth="1280.0" style="-fx-background-color: #303030;">
          <children>
             <VBox layoutX="30.0" layoutY="16.0" prefHeight="412.0" prefWidth="520.0" spacing="50.0">
                <children>
@@ -292,7 +285,7 @@
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button id="resetGameButton" fx:id="resetGameButton" alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetGame" style="-fx-background-color: #03dac6;" text="Reset" textFill="WHITE">
+                  <Button id="resetGameButton" fx:id="resetGameButton" alignment="CENTER" minHeight="40.0" minWidth="100.0" mnemonicParsing="false" onAction="#resetGame" style="-fx-background-color: #03dac6;" text="New Game" textFill="BLACK">
                      <effect>
                         <DropShadow />
                      </effect>
@@ -338,6 +331,21 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </VBox>
+            <HBox alignment="CENTER" layoutX="705.0" layoutY="368.0" minHeight="80.0" minWidth="530.0" prefHeight="80.0" prefWidth="530.0" spacing="100.0" style="-fx-background-color: #424242; -fx-background-radius: 20;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <children>
+                  <Text id="statusText" fx:id="statusText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="">
+                     <font>
+                        <Font size="44.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -346,7 +354,7 @@
             <GaussianBlur radius="20.0" />
          </effect>
       </Pane>
-      <Pane id="welcomePane" fx:id="welcomePane" layoutX="375.0" layoutY="70.0" prefHeight="341.0" prefWidth="550.0" style="-fx-background-color: #303030; -fx-background-radius: 30;">
+      <Pane id="welcomePane" fx:id="welcomePane" cache="true" layoutX="375.0" layoutY="70.0" prefHeight="341.0" prefWidth="550.0" style="-fx-background-color: #303030; -fx-background-radius: 30;">
          <children>
             <VBox alignment="CENTER" layoutX="65.0" layoutY="14.0" spacing="30.0">
                <children>
@@ -393,7 +401,7 @@
             <DropShadow color="WHITE" height="100.0" radius="49.5" width="100.0" />
          </effect>
       </Pane>
-      <Pane id="rulesPane" fx:id="rulesPane" layoutX="375.0" layoutY="70.0" prefHeight="341.0" prefWidth="550.0" style="-fx-background-color: #303030; -fx-background-radius: 30;" visible="false">
+      <Pane id="rulesPane" fx:id="rulesPane" cache="true" layoutX="375.0" layoutY="70.0" prefHeight="341.0" prefWidth="550.0" style="-fx-background-color: #303030; -fx-background-radius: 30;" visible="false">
          <children>
             <VBox layoutX="114.0" layoutY="65.05078125" spacing="1.0">
                <children>

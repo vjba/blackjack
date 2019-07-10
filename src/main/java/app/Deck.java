@@ -38,8 +38,9 @@ public class Deck {
                     break;
                 }
             } catch (IndexOutOfBoundsException i) {
-                System.out.println(i.getMessage());
                 i.printStackTrace();
+            } catch (AssertionError a) {
+                a.printStackTrace();
             }
         }
         return card;
@@ -49,13 +50,7 @@ public class Deck {
         return this.deck.size();
     }
 
-    // Testing purposes only
     public ArrayList<Card> getDeck() {
         return deck;
-    }
-
-    // Testing purposes only
-    public Card getCard(int index) {
-        return deck.get(index);
     }
 }
